@@ -1,0 +1,35 @@
+class Solution:
+    def partition(self, s: str) -> List[List[str]]:
+        currSet, subSet = [], []
+
+        self.helper(0, currSet, subSet, s)
+
+        return subSet
+
+
+    def helper(self, i, currSet, subSet, s):
+
+        if i >= len(s):
+            subSet.append(currSet.copy())
+            return
+        
+        for j in range(i, len(s)):
+            if self.isPalindrome(s, i, j):
+                currSet.append(s[i:j+1])
+                self.helper(j + 1, currSet, subSet, s)
+                currSet.pop()
+
+
+
+    def isPalindrome(self, s, i, j):
+        while i < j:
+            if s[i] != s[j]:
+                print("NOT IT PAPI")
+                return False
+            i += 1
+            j -= 1
+
+        print("YES PALINDROME")
+        return True
+
+
