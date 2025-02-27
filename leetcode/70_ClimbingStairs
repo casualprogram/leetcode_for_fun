@@ -1,0 +1,24 @@
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        # create a cache
+        cache = {}
+        # return 
+        return self.helper(n, cache, 0)
+    
+    # helper function
+    def helper(self, n, cache, i):
+        # if i ending == n, then reached the level
+        if i == n :
+            return 1
+        # if i ending up >= n, then it failed
+        if i >= n:
+            return 0
+
+        # create cache
+        if i in cache:
+            return cache[n]
+        
+        # storage in cache for faster speed
+        cache[n] = self.helper(n , cache,  i + 1) + self.helper(n,cache,  i + 2)
+
+        return cache[n]
