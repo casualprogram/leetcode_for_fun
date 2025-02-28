@@ -1,0 +1,15 @@
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+
+	# create 2 dynamic pointers
+        rob1, rob2 = 0, 0
+
+	# iterate through
+        for num in nums:
+	    # Dynamic switch
+            temp = max(rob1 + num, rob2)
+            rob1 = rob2
+            rob2 = temp
+        
+	# return whichever better
+        return max(rob1, rob2)
