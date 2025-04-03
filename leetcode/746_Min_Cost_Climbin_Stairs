@@ -1,0 +1,14 @@
+class Solution:
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        #   [1,2,3]
+        
+        # append a 0 for calculation easier
+        cost.append(0)
+
+        # iterate through and calcuate what is the min for each pos
+        #       to reach the goal
+        for i in range(len(cost) - 3, -1, -1):
+            cost[i] = min((cost[i] + cost[i+1]), cost[i] + cost[i+2])
+        
+        # whichever smaller
+        return min(cost[0],cost[1])
